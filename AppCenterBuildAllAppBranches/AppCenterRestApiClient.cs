@@ -11,6 +11,7 @@ namespace AppCenterBuildAllAppBranches
     sealed class AppCenterRestApiClient : IDisposable
     {
         private const string apiUri = "https://api.appcenter.ms/v0.1/";
+        private const string buildLinkFormat = "https://appcenter.ms/users/{0}/apps/{1}/build/branches/{2}/builds/{3}";
 
         private readonly HttpClient httpClient = new();
         private readonly string urlEncodedOwnerName;
@@ -60,11 +61,9 @@ namespace AppCenterBuildAllAppBranches
             return await this.httpClient.GetFromJsonAsync<Build>($"apps/{this.urlEncodedOwnerName}/{this.urlEncodedAppName}/builds/{id}", this.jsonOptions);
         }
 
-        // https://openapi.appcenter.ms/#/build/builds_getDownloadUri
-        public async Task<Download> GetDownload(long buildId, DownloadType type)
+        public string GetBuildLink(string branchName, long id)
         {
-            return await this.httpClient.GetFromJsonAsync<Download>(
-                $"apps/{this.urlEncodedOwnerName}/{this.urlEncodedAppName}/builds/{buildId}/downloads/{type.ToString().ToLower()}", this.jsonOptions);
+            return string.Format(buildLinkFormat, this.urlEncodedOwnerName, this.urlEncodedAppName, WebUtility.UrlEncode(branchName), id);
         }
 
         public void Dispose()

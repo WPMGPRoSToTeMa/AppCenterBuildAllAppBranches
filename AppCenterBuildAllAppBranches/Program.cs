@@ -47,7 +47,7 @@ namespace AppCenterBuildAllAppBranches
                 build = await client.GetBuild(build.Id);
             }
 
-            Download log = await client.GetDownload(build.Id, DownloadType.Logs);
+            string buildLink = client.GetBuildLink(branchName, build.Id);
 
             string result = build.Result == BuildResult.Succeeded ? "completed" : "failed";
 
@@ -55,7 +55,7 @@ namespace AppCenterBuildAllAppBranches
             TimeSpan elapsed = build.FinishTime.Value - build.StartTime.Value;
             long elapsedSeconds = (long)Math.Ceiling(elapsed.TotalSeconds);
 
-            Console.WriteLine($"{branchName} build {result} in {elapsedSeconds} seconds. Link to build logs: {log.Uri}");
+            Console.WriteLine($"{branchName} build {result} in {elapsedSeconds} seconds. Link to build logs: {buildLink}");
         }
     }
 }
