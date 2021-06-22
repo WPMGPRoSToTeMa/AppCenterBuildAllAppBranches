@@ -13,11 +13,11 @@ In order to use this tool you need an application on [AppCenter](https://appcent
 ||--rate||10|A delay between build status queries (in seconds)|
 
 ### Example
-`>AppCenterBuildAllAppBranches.exe --ownername artem --appname foobar --apikey <<hidden>>`
+`>AppCenterBuildAllAppBranches.exe --ownername v-argolu-microsoft.com --appname Foobar --apikey <<hidden>>`
 
 Output:
 ```
-develop build failed in 95 seconds. Link to build logs: https://build.appcenter.ms/v0.1/public/apps/<<hidden>>/downloads?token=<<hidden>>
-feature/fix-develop build completed in 150 seconds. Link to build logs: https://build.appcenter.ms/v0.1/public/apps/<<hidden>>/downloads?token=<<hidden>>
-master build completed in 148 seconds. Link to build logs: https://build.appcenter.ms/v0.1/public/apps/<<hidden>>/downloads?token=<<hidden>>
+feature/fix-develop build completed in 198 seconds. Link to build logs: https://appcenter.ms/users/v-argolu-microsoft.com/apps/Foobar/build/branches/feature%2Ffix-develop/builds/37
+develop build failed in 126 seconds. Link to build logs: https://appcenter.ms/users/v-argolu-microsoft.com/apps/Foobar/build/branches/develop/builds/36
+master build completed in 126 seconds. Link to build logs: https://appcenter.ms/users/v-argolu-microsoft.com/apps/Foobar/build/branches/master/builds/38
 ```
